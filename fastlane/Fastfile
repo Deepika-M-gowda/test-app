@@ -1,0 +1,54 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :custom_lane do
+    # Begin lane actions
+    begin
+      xcode_select("/Applications/Xcode_15.0.app")
+      
+      # Increment build number with a timestamp
+      build_number = Time.new.strftime("%Y%m%d%H%M%S")
+      increment_build_number(
+        build_number: build_number,
+        xcodeproj: "test-app.xcodeproj"
+      )
+      
+      # Update team and code signing settings
+      update_project_team(
+        path: "test-app.xcodeproj",
+        teamid: "M6ENXWGY3Q"
+      )
+      
+      update_code_signing_settings(
+        use_automatic_signing: true
+      )
+
+      # Build the app and export as ad-hoc
+      build_app(
+        xcargs: "-allowProvisioningUpdates",
+        scheme: "test-app",
+        output_name: "test-app.ipa",
+        export_options: {
+          method: "ad-hoc"
+        }
+      )
+
+      # Upload IPA to server
+      app_pool = sh("curl -F 'file=@/Users/cicd/Desktop/test-app/test-app.ipa' -X POST -k https://apps.teamta.net/uploadbinary.php")
+
+      # Log and process the response
+      inter_ = app_pool.to_s
+      sh("touch curl_slack.log")
+      sh("echo '#{inter_}' >> curl_slack.log")
+      real_link = sh("tail -1 curl_slack.log")
+      
+      # Clean up the link string
+      trimStr = real_link.to_s.lstrip
+      trimedStringLink = "(#{trimStr.delete("\n")})"
+
+      # Get the latest git commit message
+      gitMsg = sh("git log -1 --pretty=%B")
+    end
+  end
+end

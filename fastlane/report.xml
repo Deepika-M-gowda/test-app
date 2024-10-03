@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="00: default_platform" time="0.000189">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="01: xcode_select" time="0.000895">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="02: increment_build_number" time="1.185946">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="03: update_project_team" time="0.038227">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="04: update_code_signing_settings" time="0.00802">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="05: build_app" time="61.459751">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="06: curl -F &apos;file=@/Users/cicd/Desktop/test-app/test-app.ipa&apos; -X POST -k https://apps.teamta.net/uploadbinary.php" time="1.648582">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="07: touch curl_slack.log" time="0.011659">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="08: echo &apos;  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100 31645    0    54  100 31591     33  19310  0:00:01  0:00:01 --:--:-- 19366
+https://apps.teamta.net?id=ta.com.test-app.unpublished&apos; &gt;&gt; curl_slack.log" time="0.010736">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="09: tail -1 curl_slack.log" time="0.007158">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="10: git log -1 --pretty=%B" time="0.018795">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
